@@ -61,4 +61,25 @@ function dailogCreation(){
     document.body.appendChild(dailog)
 }
 
-export {dailogCreation}
+function taskCreation(){
+
+    const task =  document.createElement('div')
+    task.classList.add('task')
+
+    const heading = document.createElement('h1')
+    heading.innerText = 'Enter a New Task'
+    task.appendChild(heading)
+
+    const taskInput = document.createElement('input')
+    taskInput.classList.add('taskInput')
+    task.appendChild(taskInput)
+
+    const submitTask = document.createElement('button')
+    submitTask.classList.add('addNewTask')
+    submitTask.innerText = 'Add Task'
+    task.appendChild(submitTask)
+
+    document.body.appendChild(task)
+    
+}
+export {dailogCreation,taskCreation}

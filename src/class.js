@@ -9,6 +9,12 @@ class Project {
 
 }
 
+class Todo extends Project {
+    constructor(todos){
+        this.todos = todos
+    }
+}
+
 function getValues(){
 
     let title = document.querySelector('.title').value
@@ -19,5 +25,9 @@ function getValues(){
     return{title,description,dueDate,priority}
 }
 
+function getTodos(){
+    let todos = document.querySelector('.taskInput').value
+    return todos
+}
 
-export{Project,getValues}
+export{Project,getValues,getTodos}

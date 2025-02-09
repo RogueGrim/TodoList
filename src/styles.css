@@ -2,11 +2,14 @@
     margin: 0;
     padding: 0;
 }
+
 body{
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 4fr;
     background-color:lightblue;
 }
+
 header{
     height: 50px;
     grid-column: 1/3;
@@ -14,12 +17,14 @@ header{
     border: blue 5px dashed;
     padding: 5px;
 }
+
 header>div>h1{
     font-size: 45px;
 }
 
+/*side panel styling*/
 .sidepanel{
-    position: relative;
+    
     margin-top: -5px;
     grid-column:  1/2;
     background-color:white;
@@ -54,6 +59,7 @@ header>div>h1{
 
 }
 
+/*project dialog syling*/
 .dialog{
     position: absolute;
     display: flex;
@@ -104,4 +110,114 @@ header>div>h1{
     font-weight: bold;
     font-size: 20px;
 
+}
+
+/*task dialog styling*/
+.task{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    max-width: 600px;
+    max-height: 800px;
+    border: blue 5px dashed;
+    justify-self: center;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    gap: 10px;
+}
+
+.task>input{
+    border: blue 1px dashed;
+    background-color: white;
+    padding: 5px;
+    min-height: 10px;
+    font-size: 20px;
+}
+
+.task>button{
+    border: blue 3px dashed;
+    background-color: white;
+    max-width: fit-content;
+    align-self: center;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/*todo list heading*/
+.todo{
+    grid-column: 1/3;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+}
+
+.todo>button{
+    background-color: white;
+    border: blue 3px dashed;
+    font-weight: bold;
+    max-width: fit-content;
+    padding: 5px;
+    margin: 5px;
+}
+
+/*todo list styling*/
+.todoContent>div{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    font-style: italic;
+    font-size: large;
+    margin-left: 100px;
+}
+
+/*detail project styling*/
+.card{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    background-color: white;
+    border: blue 5px dashed;
+    margin: 10px;
+    padding: 10px;
+    gap: 10px;
+}
+
+.cardContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.btn{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: end;
+}
+
+.btn>button{
+    background-color: white;
+    border: blue 2px dashed;
+    padding: 2px;
+    font-weight: bold;
+    width: 50px;
+}
+
+/*side panel project list*/
+.listCard{
+    display: flex;
+    background-color: white;
+    border: blue 5px dashed;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    width: 95%;
+}
+
+.listCard>p{
+    align-self: flex-end;
 }
