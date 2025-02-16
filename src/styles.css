@@ -164,13 +164,38 @@ header>div>h1{
 }
 
 /*todo list styling*/
-.todoContent>div{
+.todoContent{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.listContent{
+    display: flex;
+    gap: 10px;
+}
+
+.btn{
+    display: flex;
+    gap: 10px;
+    margin: 2px;
+}
+.btn>button{
+    border: 1px blue dashed;
+    font-weight: bold;
+    background-color: white;
+    padding: 2px;
+
+}
+
+.list{
     display: flex;
     gap:10px;
     align-items: center;
     font-style: italic;
     font-size: large;
     margin-left: 100px;
+    justify-content: space-between;
 }
 
 /*detail project styling*/
@@ -185,23 +210,22 @@ header>div>h1{
 }
 
 .cardContent{
+    grid-column: 1/3;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
 
-.btn{
+.cardBtn{
     display: flex;
-    gap:10px;
-    align-items: center;
-    justify-content: end;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
 }
-
-.btn>button{
+.cardBtn>button{
     background-color: white;
-    border: blue 2px dashed;
-    padding: 2px;
+    border: 3px blue dashed;
+    padding:3px;
     font-weight: bold;
     width: 50px;
 }

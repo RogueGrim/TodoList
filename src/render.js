@@ -1,46 +1,59 @@
-function renderCard(title,description,dueDate,priority){
+function renderCard(title,description,dueDate,priority,count){
 
     const container = document.querySelector('.mainContent')
 
     const card  = document.createElement('div')
     card.classList.add('card')
+    card.setAttribute('count',count)
 
     const content = document.createElement('div')
     content.classList.add('cardContent')
 
     const leftContent = document.createElement('div')
     const heading = document.createElement('h1')
+    heading.classList.add('projectHeading')
     heading.innerText = title;
     leftContent.appendChild(heading)
 
     const desc = document.createElement('p')
+    desc.classList.add('projectDesc')
     desc.innerText = description
     leftContent.appendChild(desc)
 
     content.appendChild(leftContent)
     
-    const date = document.createElement('p')
-    date.innerText = `Due on: ${dueDate}`
-    content.appendChild(date)
-
-    const prior = document.createElement('p')
-    prior.innerText = priority
-    content.appendChild(prior)
-
-    card.appendChild(content)
+    const rightContent = document.createElement('div')
 
     const btn = document.createElement('div')
-    btn.classList.add('btn')
-
+    btn.classList.add('cardBtn')
+    
     const del = document.createElement('button')
-    del.innerText = 'Delete'
+    del.classList.add('delProject')
+    del.innerText = 'Del'
     btn.appendChild(del)
 
-    const edit  = document.createElement('button')
+    const edit = document.createElement('button')
+    edit.classList.add('editProject')
     edit.innerText = 'Edit'
     btn.appendChild(edit)
 
-    card.appendChild(btn)
+    rightContent.appendChild(btn)
+
+    const date = document.createElement('p')
+    date.classList.add('projectDate')
+    date.innerText = `Due on: ${dueDate}`
+    rightContent.appendChild(date)
+
+    const prior = document.createElement('p')
+    prior.classList.add('projectPrior')
+    prior.innerText = priority
+    rightContent.appendChild(prior)
+
+    
+
+    content.appendChild(rightContent)
+    card.appendChild(content)
+
 
     const todo = document.createElement('div')
     todo.classList.add('todo')
@@ -68,26 +81,48 @@ function renderTodo(value){
     const container = document.querySelector('.todoContent')
     
     const todo = document.createElement('div')
+    todo.classList.add('list')
+
+    const content = document.createElement('div')
+    content.classList.add('listContent')
 
     const check = document.createElement('input')
     check.classList.add('checklist')
     check.type = 'checkbox'
-    todo.appendChild(check)
+    content.appendChild(check)
     
     const list = document.createElement('p')
+    list.classList.add('taskContent')
     list.innerText = value
-    todo.appendChild(list)
+    content.appendChild(list)
 
+    todo.appendChild(content)
+
+    const btn = document.createElement('div')
+    btn.classList.add('btn')
+
+    const del = document.createElement('button')
+    del.classList.add('delTodo')
+    del.innerText = 'Del'
+    btn.appendChild(del)
+
+    const edit = document.createElement('button')
+    edit.classList.add('editTodo')
+    edit.innerText = 'Edit'
+    btn.appendChild(edit)
+
+    todo.appendChild(btn)
     container.appendChild(todo)
 
 }
 
-function renderList(title,priority){
+function renderList(title,priority,count){
 
     const container = document.querySelector('.projectView')
 
     const card = document.createElement('div')
     card.classList.add('listCard')
+    card.setAttribute('count',count)
 
     const head = document.createElement('h1')
     head.innerText = title

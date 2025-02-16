@@ -1,38 +1,109 @@
 import './styles.css'
-import { dailogCreation ,taskCreation} from './dialog';
+import { dailogCreation ,taskCreation,editDialog,editTaskDialog} from './dialog';
 import {Project,getValues,getTodos} from './class';
-import { renderCard,renderList,renderTodo} from './card';
+import { renderCard,renderList,renderTodo} from './render';
+import { defaultProject } from './deafultProject';
 
-let list = []
-let addProject =  document.querySelector('.addProject')
-addProject.addEventListener('click',()=>{
-    dailogCreation()
 
-    let submit = document.querySelector('.submitProject')
-    submit.addEventListener('click',()=>{
-        
-        let {title,description,dueDate,priority} = getValues()
-        let book = new Project(title,description,dueDate,priority)
-        list.push(book)
-        renderCard(title,description,dueDate,priority)
-        renderList(title,priority)
-        console.log(list)
-        document.body.removeChild(document.body.lastChild)
 
-        let todo = document.querySelector('.addTask')
-        todo.addEventListener('click',()=>{
+let projectCounter = {
+    count:0,
+    countUp:function(){
+        this.count++
+    },
+    countDown:function(){
+        this.count--
+    },
+}
+defaultProject()
+
+//
+function addProject(){
+    let container = document.querySelector('.addProject')
+
+    container.addEventListener('click',()=>{
+        dailogCreation()
+        submitProject()
+    })
+}
+addProject()
+
+
+
+function submitProject(){
+    let container =  document.querySelector('.submitProject')
+
+    container.addEventListener('click',()=>{
+        document.body.lastChild.remove()
+    })
+}
+
+function addTask(){
+    let container = document.querySelectorAll('.addTask')
+
+    container.forEach((item)=>{
+        item.addEventListener('click',()=>{
             taskCreation()
-
-            let addTask = document.querySelector('.addNewTask')
-            addTask.addEventListener('click',()=>{
-                let value = getTodos()
-                renderTodo(value)
-                document.body.removeChild(document.body.lastChild)
-            })
         })
     })
+}
 
-    
-})
+function editProject(){
+    let container = document.querySelectorAll('.editProject')
+
+    container.forEach((item)=>{
+        item.addEventListener('click',()=>{
+            let title = item.closest('.card').querySelector('.projectHeading').innerText
+            let desc = item.closest('.card').querySelector('.projectDesc').innerText
+            let dueDate = item.closest('.card').querySelector('.projectDate').innerText
+            let prior = item.closest('.card').querySelector('.projectPrior').innerText
+            editDialog(title,desc,dueDate,prior)
+        })
+    })
+}
+editProject()
+
+function editTask(){
+    let container = document.querySelectorAll('.editTodo')
+
+    container.forEach((item)=>{
+        item.addEventListener('click',()=>{
+            let content = item.closest('.list').querySelector('.taskContent').innerText 
+            editTaskDialog(content)
+        })
+    })
+}
 
 
+function DelTodo(){
+
+    let container = document.querySelectorAll('.delTodo')
+
+    container.forEach((item)=>{
+        item.addEventListener('click',(e)=>{
+            e.preventDefault()
+            e.target.closest('.list').remove()
+        })
+    })
+}
+
+function delCard(value){
+    let container = document.querySelector(`[count='${value}']`)
+    container.remove()
+}
+
+function delProject(){
+    let container = document.querySelectorAll('.delProject')
+
+    container.forEach((item)=>{
+        item.addEventListener('click',(e)=>{
+            e.preventDefault()
+            let value = e.target.closest('.card').getAttribute('count')
+            delCard(value)
+            e.target.closest('.card').remove()
+            projectCounter.countDown()
+        })
+    })
+}
+
+export {projectCounter}

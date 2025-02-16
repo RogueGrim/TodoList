@@ -4,6 +4,7 @@ function dailogCreation(){
     dailog.classList.add('dialog')
     
     let heading = document.createElement('h1')
+    heading.classList.add('heading')
     heading.innerText = 'Add a new Project'
     dailog.appendChild(heading)
     
@@ -68,6 +69,7 @@ function taskCreation(){
 
     const heading = document.createElement('h1')
     heading.innerText = 'Enter a New Task'
+    heading.classList.add('heading')
     task.appendChild(heading)
 
     const taskInput = document.createElement('input')
@@ -82,4 +84,35 @@ function taskCreation(){
     document.body.appendChild(task)
     
 }
-export {dailogCreation,taskCreation}
+
+function editDialog(titleContent,descContent,dueDateContent,priorContent){
+    dailogCreation()
+
+    let heading = document.querySelector('.heading')
+    heading.innerText = 'Edit Project'
+
+    let title = document.querySelector('.title')
+    title.value = titleContent
+
+    let desc = document.querySelector('.description')
+    desc.value = descContent
+
+    let dueDate = document.querySelector('.dueDate')
+    dueDate.value = dueDateContent
+    
+    let prior = document.querySelector('.priority')
+    prior.value = priorContent
+
+}
+
+function editTaskDialog(content){
+    taskCreation()
+
+    let heading =  document.querySelector('.heading')
+    heading.innerText = 'Edit Task'
+
+    let task = document.querySelector('.taskInput')
+    task.value = content
+
+}
+export {dailogCreation,taskCreation,editDialog,editTaskDialog}
