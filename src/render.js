@@ -4,7 +4,7 @@ function renderCard(title,description,dueDate,priority,count){
 
     const card  = document.createElement('div')
     card.classList.add('card')
-    card.setAttribute('count',count)
+    card.setAttribute('projectNo',count)
 
     const content = document.createElement('div')
     content.classList.add('cardContent')
@@ -122,7 +122,7 @@ function renderList(title,priority,count){
 
     const card = document.createElement('div')
     card.classList.add('listCard')
-    card.setAttribute('count',count)
+    card.setAttribute('projectNo',count)
 
     const head = document.createElement('h1')
     head.innerText = title

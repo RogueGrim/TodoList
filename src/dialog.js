@@ -78,7 +78,7 @@ function taskCreation(){
 
     const submitTask = document.createElement('button')
     submitTask.classList.add('addNewTask')
-    submitTask.innerText = 'Add Task'
+    submitTask.innerText = 'Submit'
     task.appendChild(submitTask)
 
     document.body.appendChild(task)

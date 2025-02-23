@@ -1,5 +1,7 @@
 import { renderCard,renderList,renderTodo} from './render';
 import { projectCounter } from '.';
+import { Project } from './class';
+
 let defaultProject = function(){
     let title = "Daily Task"
     let description = 'doing these Chores Everyday is Important'
@@ -8,17 +10,24 @@ let defaultProject = function(){
 
     let Counter = projectCounter
 
-    renderCard(title,description,dueDate,priority,Counter.count)
-    renderList(title,priority,Counter.count)
+    let project = new Project(projectCounter.count,title,description,dueDate,priority)
+    projectCounter.Storage.push(project)
+    
 
+    console.log(projectCounter.count)
+    console.log(projectCounter.Storage)
+
+    renderList(title,priority,Counter.count)
+    
     let todo1 = 'Clean Room'
-    renderTodo(todo1)
+    projectCounter.Storage[0].todos.push(todo1)
 
     let todo2 = 'Make The Bed'
-    renderTodo(todo2)
+    projectCounter.Storage[0].todos.push(todo2)
 
     let todo3 = 'Wash Dishes'
-    renderTodo(todo3)
+    projectCounter.Storage[0].todos.push(todo3)
+    
     projectCounter.countUp()
 }   
 
