@@ -76,7 +76,7 @@ function renderCard(title,description,dueDate,priority,count){
 
 }
 
-function renderTodo(value){
+function renderTodo(value,count){
 
     const container = document.querySelector('.todoContent')
     
@@ -93,6 +93,7 @@ function renderTodo(value){
     
     const list = document.createElement('p')
     list.classList.add('taskContent')
+    list.setAttribute('taskNo',count)
     list.innerText = value
     content.appendChild(list)
 

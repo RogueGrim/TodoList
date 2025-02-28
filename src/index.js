@@ -1,10 +1,7 @@
 import './styles.css'
-import { dailogCreation ,taskCreation,editDialog,editTaskDialog} from './dialog';
-import {Project,getValues,getTodos} from './class';
-import { renderCard,renderList,renderTodo} from './render';
 import { defaultProject } from './deafultProject';
-import { storeData } from './storage';
 import { updateScreen } from './logic';
+import { addProject,addTask} from './eventListeners';
 
 
 let projectCounter = {
@@ -18,7 +15,8 @@ let projectCounter = {
     },
 }
 defaultProject()
-
 updateScreen()
+addProject()
+
 
 export {projectCounter}

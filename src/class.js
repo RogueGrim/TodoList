@@ -1,7 +1,6 @@
 class Project {
     
-    constructor(id,title,description,dueDate,priority,todos = []){
-        this.id = id
+    constructor(title,description,dueDate,priority,todos = []){
         this.title = title
         this.description = description
         this.dueDate = dueDate
