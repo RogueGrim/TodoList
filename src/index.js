@@ -1,7 +1,6 @@
 import './styles.css'
 import { defaultProject } from './deafultProject';
-import { updateScreen } from './logic';
-import { addProject,addTask} from './eventListeners';
+import { addProject ,updateScreen} from './eventListeners';
 
 
 let projectCounter = {

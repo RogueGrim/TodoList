@@ -1,8 +1,8 @@
 import { projectCounter } from "."
 import { getTodos,getValues } from "./class"
 import { renderCard,renderList,renderTodo } from "./render"
-import {dailogCreation,taskCreation,editDialog,editTaskDialog} from './dialog'
-import { editArrayItems,addToArray,getArrayTodos,editArrayTodos,delArrayTodos,delArrayItem} from "./logic"
+import { dailogCreation,taskCreation,editDialog,editTaskDialog } from './dialog'
+import { editArrayItems,addToArray,getArrayTodos,editArrayTodos,delArrayTodos,delArrayItem,getArrayItems } from "./logic"
 
 
 function addProject(){
@@ -20,12 +20,14 @@ function submitNewProject(){
 
     container.addEventListener('click',()=>{
         
-        const {title,description,dueDate,priority}= getValues()
+        const {title,description,dueDate,priority} = getValues()
         addToArray(title,description,dueDate,priority)
         renderList(title,priority,projectCounter.count)
         content.innerHTML=''
         renderCard(title,description,dueDate,priority,projectCounter.count)
         document.body.lastChild.remove()
+        updateClickHandlers()
+        updateScreen()
     })
 }
 
@@ -44,6 +46,37 @@ function submitProject(){
         document.body.lastChild.remove()
     })
 }
+
+function editProject(){
+    let container = document.querySelector('.editProject')
+
+    container.addEventListener('click',()=>{
+        let title = container.closest('.card').querySelector('.projectHeading').innerText
+        let desc = container.closest('.card').querySelector('.projectDesc').innerText
+        let dueDate = container.closest('.card').querySelector('.projectDate').innerText
+        let prior = container.closest('.card').querySelector('.projectPrior').innerText
+        editDialog(title,desc,dueDate,prior)
+        submitProject()
+   
+    })
+
+}
+
+function delProject(){
+    let container = document.querySelector('.delProject')
+    
+
+    container.addEventListener('click',()=>{
+        let value = document.querySelector('.card').getAttribute('projectno')
+        let content = document.querySelectorAll(`[projectno='${value}']`)
+        content.forEach((e)=>{
+            e.remove()
+        })
+        delArrayItem(value)
+        projectCounter.countDown()
+    })
+}
+
 
 function submitNewTask(){
     let container = document.querySelector('.addNewTask')
@@ -73,6 +106,7 @@ function submitTask(taskNo){
 
 }
 
+
 function addNewTask(){
     let container = document.querySelector('.addTask')
 
@@ -83,20 +117,7 @@ function addNewTask(){
 
 }
 
-function editProject(){
-    let container = document.querySelector('.editProject')
 
-    container.addEventListener('click',()=>{
-        let title = container.closest('.card').querySelector('.projectHeading').innerText
-        let desc = container.closest('.card').querySelector('.projectDesc').innerText
-        let dueDate = container.closest('.card').querySelector('.projectDate').innerText
-        let prior = container.closest('.card').querySelector('.projectPrior').innerText
-        editDialog(title,desc,dueDate,prior)
-        submitProject()
-   
-    })
-
-}
 
 function editTask(){
     let container = document.querySelectorAll('.editTodo')
@@ -128,19 +149,28 @@ function DelTodo(){
     })
 }
 
-function delProject(){
-    let container = document.querySelector('.delProject')
-    
 
-    container.addEventListener('click',()=>{
-        let value = document.querySelector('.card').getAttribute('projectno')
-        let content = document.querySelectorAll(`[projectno='${value}']`)
-        content.forEach((e)=>{
-            e.remove()
-        })
-        delArrayItem(value)
-        projectCounter.countDown()
-    })
+function updateClickHandlers(){
+    editProject()
+    delProject()
+    addNewTask()
+    editTask()
+    DelTodo()
 }
 
-export {addProject,addNewTask,editProject,editTask,delProject,DelTodo}
+function updateScreen(){
+    let container = document.querySelectorAll('.listCard')
+    let display = document.querySelector('.mainContent')
+ 
+    container.forEach((item)=>{
+         item.addEventListener('click',()=>{
+         const value = item.getAttribute('projectNo') 
+         display.innerHTML = ''
+         getArrayItems(value)
+         getArrayTodos(value)
+         updateClickHandlers()
+      })       
+ 
+    })
+}
+export {addProject,addNewTask,editProject,editTask,delProject,DelTodo,updateScreen}

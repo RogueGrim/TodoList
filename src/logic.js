@@ -1,7 +1,5 @@
 import { renderCard,renderTodo } from "./render"
 import { projectCounter } from "."
-import { editProject,editTask ,delProject, DelTodo} from "./eventListeners"
-import { editTaskDialog } from "./dialog"
 import { Project } from "./class"
 
 
@@ -51,23 +49,6 @@ function delArrayTodos(projectNo,taskNo){
    projectCounter.Storage[projectNo].todos.splice(taskNo,1)
 }
 
-function updateScreen(){
-    let container = document.querySelectorAll('.listCard')
-    let display = document.querySelector('.mainContent')
- 
-    container.forEach((item)=>{
-         item.addEventListener('click',()=>{
-         const value = item.getAttribute('projectNo') 
-         display.innerHTML = ''
-         getArrayItems(value)
-         getArrayTodos(value)
-         editProject()
-         editTask()
-         delProject()
-         DelTodo()
-      })       
- 
-    })
-}
 
- export {updateScreen,editArrayItems,addToArray,getArrayTodos,editArrayTodos,delArrayItem,delArrayTodos}
+
+ export {editArrayItems,addToArray,getArrayTodos,editArrayTodos,delArrayItem,delArrayTodos,getArrayItems}
